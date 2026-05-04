@@ -1,25 +1,23 @@
-// import Home from "./pages/Home";
-// import "./css/App.css";
-
-// function App() {
-//   return (
-//     <main className="main-content">
-//       <Home />
-//     </main>
-//   );
-// }
-
-// export default App;
-
-import Home from "./pages/Home";
 import "./css/App.css";
+import Home from "./pages/Home";
+import { Routes, Route } from "react-router-dom";
+import Favorites from "./pages/Favorites";
+import Navbar from "./components/NavBar";
 
-function App(){
-    return (
-        <main className="main-content">
-            <Home />
-        </main>
-    ); 
+function App() {
+  return (
+    <>
+      <Navbar /> 
+      {/* Navigation bar component that appears on all pages */}
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} /> {/* home page */}
+          <Route path="/favorites" element={<Favorites />} /> {/* favorites page */}
+        </Routes>
+      </main>
+    </>
+  );
 }
 
 export default App;
+
