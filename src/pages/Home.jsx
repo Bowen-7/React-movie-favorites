@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { getPopularMovies, searchMovies } from "../services/api";
 
 function Home() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
@@ -59,6 +59,7 @@ function Home() {
       {/* form for searching movies */}
       <form onSubmit={handleSearch} className="search-form">
         <input
+          className="search-input"
           type="text"
           placeholder="Search for movies..."
           value={searchQuery}
