@@ -19,10 +19,22 @@ function Home() {
     },
   ]);
 
+  const handleSearch = (e) => {
+    // Handle form submit and prevent page refresh
+    e.preventDefault();
+
+    if (!searchQuery.trim()) {
+      return;
+    }
+
+    console.log("Searching for:", searchQuery);
+    //API call to fetch movies here
+  };
+
   return (
     <div className="home">
       {/* form for searching movies */}
-      <form className="search-form">
+      <form onSubmit={handleSearch} className="search-form">
         <input
           type="text"
           placeholder="Search for movies..."
