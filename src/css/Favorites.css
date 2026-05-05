@@ -1,5 +1,5 @@
 .favorites {
-  padding: 2rem;
+  padding: 1rem 0 2rem;
   width: 100%;
   box-sizing: border-box;
 }
@@ -7,28 +7,31 @@
 .favorites h2 {
   margin-bottom: 2rem;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 3.2rem);
   color: #ffffff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 16px 45px rgba(0, 0, 0, 0.48);
 }
 
 .favorites-empty {
   text-align: center;
-  padding: 4rem 2rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  padding: clamp(3rem, 8vw, 5rem) 2rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.045));
+  border: 1px solid var(--border);
+  border-radius: 8px;
   margin: 2rem auto;
-  max-width: 600px;
+  max-width: 680px;
+  box-shadow: var(--shadow);
 }
 
 .favorites-empty h2 {
   margin-bottom: 1rem;
-  font-size: 2rem;
-  color: #e50914;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  color: #ffffff;
 }
 
 .favorites-empty p {
-  color: #999;
+  color: var(--text-muted);
   font-size: 1.2rem;
   line-height: 1.6;
 }
@@ -49,4 +52,3 @@
 .movies-grid > * {
   animation: fadeIn 0.3s ease-out forwards;
 }
-
