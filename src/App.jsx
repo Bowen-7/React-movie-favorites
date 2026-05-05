@@ -3,21 +3,22 @@ import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
 import Favorites from "./pages/Favorites";
 import Navbar from "./components/NavBar";
+import { MovieProvider } from "./contexts/MovieContext";
 
 function App() {
   return (
-    <>
-      <Navbar /> 
+    <MovieProvider>
+      <Navbar />
       {/* Navigation bar component that appears on all pages */}
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} /> {/* home page */}
-          <Route path="/favorites" element={<Favorites />} /> {/* favorites page */}
+          <Route path="/favorites" element={<Favorites />} />{" "}
+          {/* favorites page */}
         </Routes>
       </main>
-    </>
+    </MovieProvider>
   );
 }
 
 export default App;
-
