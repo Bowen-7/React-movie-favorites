@@ -1,16 +1,51 @@
-# React + Vite
+# React Movie Favorites
+A small movie discovery app built with React and the TMDB API. It lets users browse popular movies, search by title, and save favorites locally.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
+- Browse popular movies
+- Search for movies by title
+- Save and remove favorite movies
+- Keep favorites after refresh with `localStorage`
+- Navigate between Home and Favorites with React Router
 
-Currently, two official plugins are available:
+## Tech Stack
+- React + Vite
+- React Router
+- Context API
+- TMDB API
+- CSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Focus
+This project focuses on a few core React patterns:
 
-## React Compiler
+- Component-based UI structure
+- API-driven data rendering
+- Form state and search handling
+- Shared favorites state with Context API
+- Local persistence with localStorage
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
+```bash
+npm install
+```
 
-## Expanding the ESLint configuration
+Create a `.env` file:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```env
+VITE_TMDB_API_KEY=your_tmdb_api_key_here
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+```bash
+npm run build
+```
+
+## Notes
+This project was built while practicing React fundamentals: components, props, state, effects, routing, context, API requests, and local persistence.
+
+This project uses movie data and images provided by [The Movie Database (TMDB)](https://www.themoviedb.org/).
