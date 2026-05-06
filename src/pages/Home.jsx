@@ -1,5 +1,6 @@
 import "../css/Home.css";
 import MovieCard from "../components/MovieCard";
+import MovieDetailsModal from "../components/MovieDetailsModal";
 import { useState, useEffect } from "react";
 import { getPopularMovies, searchMovies } from "../services/api";
 
@@ -8,6 +9,7 @@ function Home() {
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     const loadPopularMovies = async () => {
@@ -21,7 +23,6 @@ function Home() {
         setLoading(false);
       }
     };
-
     loadPopularMovies();
   }, []);
 
@@ -35,10 +36,8 @@ function Home() {
     if (loading) {
       return;
     }
-
     // console.log("Searching for:", searchQuery); => for testing purposes
     //API call to fetch movies here
-
     setLoading(true);
 
     try {
@@ -76,9 +75,20 @@ function Home() {
       <div className="movies-grid">
         {/* Loop through movies and render one MovieCard for each movie */}
         {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <MovieCard
+            key={movie.id}
+            movie={movie}
+            onSelectMovie={setSelectedMovie} // Pass the function to set the selected movie when a card is clicked
+          />
         ))}
       </div>
+
+      {selectedMovie && (
+        <MovieDetailsModal
+          movie={selectedMovie}
+          onClose={() => setSelectedMovie(null)}
+        />
+      )}
     </div>
   );
 }

@@ -4,6 +4,7 @@ A small movie discovery app built with React and the TMDB API. It lets users bro
 ## Features
 - Browse popular movies
 - Search for movies by title
+- Open a movie details modal
 - Save and remove favorite movies
 - Keep favorites after refresh with `localStorage`
 - Navigate between Home and Favorites with React Router
@@ -21,6 +22,7 @@ This project focuses on a few core React patterns:
 - Component-based UI structure
 - API-driven data rendering
 - Form state and search handling
+- Parent-to-child interaction with a details modal
 - Shared favorites state with Context API
 - Local persistence with localStorage
 
