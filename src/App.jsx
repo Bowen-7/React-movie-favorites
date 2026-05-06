@@ -15,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} /> {/* home page */}
           <Route path="/favorites" element={<Favorites />} />{" "}
           {/* favorites page */}
+          
         </Routes>
       </main>
     </MovieProvider>

@@ -10,24 +10,28 @@ function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [hasSearched, setHasSearched] = useState(false);
+
+  const loadPopularMovies = async () => {
+    setLoading(true);
+    try {
+      const popularMovies = await getPopularMovies();
+      setMovies(popularMovies || []);
+      setError(null);
+      setHasSearched(false);
+    } catch (err) {
+      console.log("Error fetching popular movies:", err);
+      setError("Failed to load popular movies...");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const loadPopularMovies = async () => {
-      try {
-        const popularMovies = await getPopularMovies();
-        setMovies(popularMovies); // update movies
-      } catch (err) {
-        console.log("Error fetching popular movies:", err);
-        setError("Failed to load popular movies...");
-      } finally {
-        setLoading(false);
-      }
-    };
     loadPopularMovies();
   }, []);
 
   const handleSearch = async (e) => {
-    // Handle form submit and prevent page refresh
     e.preventDefault();
 
     if (!searchQuery.trim()) {
@@ -36,15 +40,14 @@ function Home() {
     if (loading) {
       return;
     }
-    // console.log("Searching for:", searchQuery); => for testing purposes
-    //API call to fetch movies here
+
     setLoading(true);
 
     try {
-      // searching movies
       const searchResults = await searchMovies(searchQuery);
-      setMovies(searchResults);
-      setError(null); // Clear any previous errors
+      setMovies(searchResults || []);
+      setHasSearched(true);
+      setError(null);
     } catch (err) {
       console.log("Error fetching movies:", err);
       setError("Failed to search movies...");
@@ -55,7 +58,6 @@ function Home() {
 
   return (
     <div className="home">
-      {/* form for searching movies */}
       <form onSubmit={handleSearch} className="search-form">
         <input
           className="search-input"
@@ -70,18 +72,29 @@ function Home() {
       </form>
 
       {error && <div className="error-message">{error}</div>}
-
-      {/* display movie cards in a grid layout */}
-      <div className="movies-grid">
-        {/* Loop through movies and render one MovieCard for each movie */}
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            movie={movie}
-            onSelectMovie={setSelectedMovie} // Pass the function to set the selected movie when a card is clicked
-          />
-        ))}
-      </div>
+      
+      {/* Show loading, empty state, or movies grid based on the current state */}
+      {loading ? (
+        <div className="loading">Loading...</div>
+      ) : hasSearched && movies.length === 0 ? (
+        <div className="empty-results">
+          <h2>No movies found</h2>
+          <p>Try a different title or return to popular movies.</p>
+          <button type="button" onClick={loadPopularMovies}>
+            Show popular movies
+          </button>
+        </div>
+      ) : (
+        <div className="movies-grid">
+          {movies.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onSelectMovie={setSelectedMovie}
+            />
+          ))}
+        </div>
+      )}
 
       {selectedMovie && (
         <MovieDetailsModal

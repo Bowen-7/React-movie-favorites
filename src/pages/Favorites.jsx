@@ -1,9 +1,12 @@
 import "../css/Favorites.css";
 import { useMovieContext } from "../contexts/MovieContext";
 import MovieCard from "../components/MovieCard";
+import { useState } from "react";
+import MovieDetailsModal from "../components/MovieDetailsModal";
 
 function Favorites() {
   const { favorites } = useMovieContext();
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   if (favorites.length > 0) {
     return (
@@ -11,9 +14,19 @@ function Favorites() {
         <h2>Your Favorites</h2>
         <div className="movies-grid">
           {favorites.map((movie) => (
-            <MovieCard movie={movie} key={movie.id} />
+            <MovieCard
+              movie={movie}
+              key={movie.id}
+              onSelectMovie={setSelectedMovie}
+            />
           ))}
         </div>
+        {selectedMovie && (
+          <MovieDetailsModal
+            movie={selectedMovie}
+            onClose={() => setSelectedMovie(null)}
+          />
+        )}
       </div>
     );
   }
