@@ -58,6 +58,11 @@ function Home() {
 
   return (
     <div className="home">
+      <section className="home-header">
+        <p className="eyebrow">Movie discovery</p>
+        <h1>Find your next favorite film</h1>
+      </section>
+
       <form onSubmit={handleSearch} className="search-form">
         <input
           className="search-input"

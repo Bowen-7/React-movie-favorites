@@ -1,20 +1,26 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../css/Navbar.css";
 
-function Navbar(){
-    return (
-        <nav className="navbar">
-            <div className="navbar-brand">
-                <Link to="/">Movie APP</Link>
-            </div>
+function Navbar() {
+  return (
+    <nav className="navbar">
+      <div className="navbar-brand">
+        <NavLink to="/" aria-label="CineVault home">
+          <span className="brand-mark">MH</span>
+          <span>MovieHub</span>
+        </NavLink>
+      </div>
 
-            <div className="navbar-links">
-                <Link to="/" className="nav-link">Home</Link>
-                <Link to="/favorites" className="nav-link">Favorites</Link>
-            </div>
-        </nav>
-    )
-
+      <div className="navbar-links">
+        <NavLink to="/" className="nav-link">
+          Discover
+        </NavLink>
+        <NavLink to="/favorites" className="nav-link">
+          Watchlist
+        </NavLink>
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;
